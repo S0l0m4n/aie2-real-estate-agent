@@ -24,14 +24,13 @@ class Neighborhood(str, Enum):
 class PredictRequest(BaseModel):
     bedrooms: int
     central_air: bool
-#   has_garage: bool
+    has_garage: bool
     lot_area: int
-#   ms_sub_class: MSSubClass
-#   neighborhood: Neighborhood
+    ms_sub_class: MSSubClass
+    neighborhood: Neighborhood
     overall_qual: int
     total_rooms: int
     year_built: int
-    year_remodel: int
 
 
 class PredictResponse(BaseModel):
@@ -55,6 +54,9 @@ def startup():
 # Sanity health check
 @app.get("/health")
 def health():
+    """
+    A simple heath check, should return "ok" when run.
+    """
     return {"status": "ok"}
 
 

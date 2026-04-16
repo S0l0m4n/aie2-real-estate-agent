@@ -25,4 +25,4 @@ There are other features that will be hard for the user to describe. We'll expla
 
 ### FastAPI app
 To run the application locally, use `uvicorn`. Note the server `main.py` is inside the `predict/` directory:
-`$: uvicorn run predict.main:app --reload --host 0.0.0.0 --port 8000
+`$: uvicorn run main:app --reload --host 0.0.0.0 --port 8000

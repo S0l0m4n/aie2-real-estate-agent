@@ -2,13 +2,8 @@ import os
 
 import joblib
 import pandas as pd
-from dotenv import load_dotenv
 
-MODEL_DIR = "data"
-
-load_dotenv()
-
-ML_MODEL = MODEL_DIR + "/" + os.getenv("ML_MODEL", "")
+from app.config import ML_MODEL
 
 _model = None
 

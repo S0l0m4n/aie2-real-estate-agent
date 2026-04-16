@@ -24,3 +24,7 @@ There are other features that will be hard for the user to describe. We'll expla
 * OverallQual
 * YearBuilt
 * YearRemodAdd
+
+### FastAPI app
+To run the application locally, use `uvicorn`. Note the server `main.py` is inside the `predict/` directory:
+`$: uvicorn run predict.main:app --reload --host 0.0.0.0 --port 8000

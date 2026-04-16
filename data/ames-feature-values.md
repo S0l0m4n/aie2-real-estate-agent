@@ -85,3 +85,7 @@ plt.tight_layout()
 plt.show()
 ```
 YearBuilt is always relevant, a house is only remodelled if YearRemodAdd has a different (later) value. If the house is not remodelled, then it's set to the same value as YearBuilt. I'm going to rerun the training model with this feature removed and see if it performs better. If it's not much different, we'll remove it.
+
+### Neighborhood
+The values for `Neighborhood` are:
+...

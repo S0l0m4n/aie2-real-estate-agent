@@ -2,7 +2,7 @@
 2ndFlrSF: Second floor square feet
 3SsnPorch: Three season porch area in square feet
 Alley: Type of alley access
-Bedroom: Number of bedrooms above basement level
+# Bedroom: Number of bedrooms above basement level
 BldgType: Type of dwelling
 BsmtCond: General condition of the basement
 BsmtExposure: Walkout or garden level basement walls
@@ -14,7 +14,7 @@ BsmtFullBath: Basement full bathrooms
 BsmtHalfBath: Basement half bathrooms
 BsmtQual: Height of the basement
 BsmtUnfSF: Unfinished square feet of basement area
-CentralAir: Central air conditioning
+# CentralAir: Central air conditioning
 Condition1: Proximity to main road or railroad
 Condition2: Proximity to main road or railroad (if a second is present)
 Electrical: Electrical system
@@ -29,7 +29,7 @@ Fireplaces: Number of fireplaces
 Foundation: Type of foundation
 FullBath: Full bathrooms above grade
 Functional: Home functionality rating
-GarageArea: Size of garage in square feet
+# GarageArea: Size of garage in square feet
 GarageCars: Size of garage in car capacity
 GarageCond: Garage condition
 GarageFinish: Interior finish of the garage
@@ -45,7 +45,7 @@ Kitchen: Number of kitchens
 KitchenQual: Kitchen quality
 LandContour: Flatness of the property
 LandSlope: Slope of property
-LotArea: Lot size in square feet
+# LotArea: Lot size in square feet
 LotConfig: Lot configuration
 LotFrontage: Linear feet of street connected to property
 LotShape: General shape of property
@@ -55,12 +55,12 @@ MasVnrType: Masonry veneer type
 MiscFeature: Miscellaneous feature not covered in other categories
 MiscVal: $Value of miscellaneous feature
 MoSold: Month Sold
-MSSubClass: The building class
+# MSSubClass: The building class
 MSZoning: The general zoning classification
-Neighborhood: Physical locations within Ames city limits
+# Neighborhood: Physical locations within Ames city limits
 OpenPorchSF: Open porch area in square feet
 OverallCond: Overall condition rating
-OverallQual: Overall material and finish quality
+# OverallQual: Overall material and finish quality
 PavedDrive: Paved driveway
 PoolArea: Pool area in square feet
 PoolQC: Pool quality
@@ -72,9 +72,9 @@ SaleType: Type of sale
 ScreenPorch: Screen porch area in square feet
 Street: Type of road access
 TotalBsmtSF: Total square feet of basement area
-TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)
+# TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)
 Utilities: Type of utilities available
 WoodDeckSF: Wood deck area in square feet
-YearBuilt: Original construction date
-YearRemodAdd: Remodel date
+# YearBuilt: Original construction date
+# YearRemodAdd: Remodel date
 YrSold: Year Sold

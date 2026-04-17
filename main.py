@@ -6,12 +6,12 @@ predicting the house price given the input data.
 from fastapi import Body, FastAPI, HTTPException
 from typing import Annotated
 
+from app import llm_client
 from app import ml_model as model
 from app.prompts import EXTRACT_FEATURES_PROMPT
 from app.schemas import (
     ExtractedFeatures, HouseDescription, HouseFeatures, PredictedPrice
 )
-from app.services.groq_llm import call_llm
 
 app = FastAPI(title="AI Real Estate Agent API")
 
@@ -100,4 +100,4 @@ def predict(request: Annotated[HouseFeatures, Body(openapi_examples=EXAMPLES)]):
 @app.post("/extract", response_model=ExtractedFeatures)
 def extract_features(request: HouseDescription):
     """Extract house features from a natural language property description."""
-    call_llm(request, EXTRACT_FEATURES_PROMPT)
+    llm_client.call(request.info, EXTRACT_FEATURES_PROMPT)

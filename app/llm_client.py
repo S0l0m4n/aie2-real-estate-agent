@@ -18,7 +18,7 @@ def _get_groq_client():
     return Groq(api_key=GROQ_API_KEY)
 
 
-def call_llm(user_prompt: str, system_prompt: str) -> str:
+def call(user_prompt: str, system_prompt: str) -> str:
     """Call LLM with user prompt and system prompt."""
     client = _get_groq_client()
 

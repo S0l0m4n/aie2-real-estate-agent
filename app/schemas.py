@@ -104,4 +104,3 @@ class ExtractedFeatures(BaseModel):
 
     missing_features: list[str] = []
     completeness: int = Field(ge=0, le=100)
-    message: Optional[str] = None

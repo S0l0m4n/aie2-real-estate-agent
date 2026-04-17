@@ -73,7 +73,6 @@ guidelines:
 
 ## Output JSON
 Use 'None' for any feature you could not extract. Use the `missing_features`
-list for fields not found, set `completeness` to the proportion of the 9 feature
-fields extracted (0.0–1.0), and use `message` to communicate anything relevant
-to the user (as prose).
+list for fields not found, set `completeness` to the percentage of the 9 features
+extracted (0 - 100 %).
 """

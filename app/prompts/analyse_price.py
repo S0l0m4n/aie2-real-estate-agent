@@ -33,4 +33,5 @@ The predicted price is {{price}} dollars for a house with the following
 features: {{features}}
 
 Interpret the price against the known statistics and give meaningful insights.
+Also provide a confidence percentage for the prediction's accuracy.
 """

@@ -105,3 +105,15 @@ def extract_features(request: HouseDescription):
     response = llm_client.call(request.text, EXTRACT_FEATURES_PROMPT,
                                ExtractedFeatures)
     return ExtractedFeatures.model_validate_json(response)
+
+
+# --- Stage 2 LLM: Price analysis ---
+
+# POST: Analyse predicted price based on summary stats
+@app.post*"/analyse", response_model=PriceAnalysis)
+def analyse_price(request: HouseData):
+    """Analyse the predicted price for the specified house, using the summary
+    stats generated from the model's training data."""
+    response = llm_client.call(request.text, ANALYSE_PRICE_PROMPT,
+                               PriceAnalysis)
+    return PriceAnalysis.model_validate_json(response)

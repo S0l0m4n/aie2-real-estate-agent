@@ -104,3 +104,27 @@ class ExtractedFeatures(BaseModel):
 
     missing_features: list[str] = []
     completeness: int = Field(ge=0, le=100)
+
+
+# --- Stage 2: LLM price analysis ---
+
+
+class HouseData(BaseModel):
+    """Request body for the /analyse endpoint."""
+
+    house_features: HouseFeatures
+    predicted_price: int
+
+
+class PriceAnalysis(BaseModel):
+    """
+    Stage 2 output — insights gotten from the predicted price and supplied data.
+    """
+
+    analysis: str = Field(
+            description="The analysis produced by the LLM about the house price"
+    )
+    confidence: int = Field(
+            ge=0, le=100,
+            description="An indication of how accurate the predicted price is"
+    )

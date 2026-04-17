@@ -65,7 +65,7 @@ class HouseFeatures(BaseModel):
     lot_area: int
     house_type: HouseType = HouseType.ONE_STORY_NEW
     neighborhood: Neighborhood = Neighborhood.NORTH_AMES
-    overall_qual: int = Field(ge=1, le=10)
+    overall_quality: int = Field(ge=1, le=10)
     total_rooms: int = Field(ge=0)
     year_built: int = 1970
 

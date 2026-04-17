@@ -34,7 +34,7 @@ The most common values are:
 
 The most reasonable things to ask a user is:
 * how many stories (1, 1.5, 2+)
-    - 2+ (75) is absorbedi into 2 
+    - 2+ (75) is absorbed into 2
 * house age (relates to `YearBuilt` feature)
     - classify as pre/post 1946 based on stories value
 * if user mentions new development, classiy as 120/160 accordingly

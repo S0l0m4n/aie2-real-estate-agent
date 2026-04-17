@@ -97,6 +97,5 @@ class ExtractedFeatures(BaseModel):
     total_rooms: Optional[int] = None
     year_built: Optional[int] = None
 
-    extracted_features: list[str] = []
     missing_features: list[str] = []
     completeness: float = 0.0

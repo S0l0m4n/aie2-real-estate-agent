@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 # --- ML model ---
 
 
-class MSSubClass(int, Enum):
+class HouseType(int, Enum):
     ONE_STORY_NEW = 20
     ONE_STORY_OLD = 30
     ONE_N_HALF_STORY = 50
@@ -63,7 +63,7 @@ class HouseFeatures(BaseModel):
     central_air: bool
     has_garage: bool
     lot_area: int
-    ms_sub_class: MSSubClass = MSSubClass.ONE_STORY_NEW
+    house_type: HouseType = HouseType.ONE_STORY_NEW
     neighborhood: Neighborhood = Neighborhood.NORTH_AMES
     overall_qual: int = Field(ge=1, le=10)
     total_rooms: int = Field(ge=0)
@@ -96,9 +96,9 @@ class ExtractedFeatures(BaseModel):
     central_air: Optional[bool] = None
     has_garage: Optional[bool] = None
     lot_area: Optional[int] = None
-    ms_sub_class: Optional[int] = None
+    house_type: Optional[int] = None
     neighborhood: Optional[str] = None
-    overall_qual: Optional[int] = None
+    overall_quality: Optional[int] = None
     total_rooms: Optional[int] = None
     year_built: Optional[int] = None
 

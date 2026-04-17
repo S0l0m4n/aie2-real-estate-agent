@@ -85,9 +85,9 @@ def predict(request: Annotated[HouseFeatures, Body(openapi_examples=EXAMPLES)]):
         "CentralAir": int(request.central_air),
         "HasGarage": int(request.has_garage),
         "LotArea": request.lot_area,
-        "MSSubClass": request.ms_sub_class.value,
+        "MSSubClass": request.house_type.value,
         "Neighborhood": request.neighborhood.value,
-        "OverallQual": request.overall_qual,
+        "OverallQual": request.overall_quality,
         "TotRmsAbvGrd": request.total_rooms,
         "YearBuilt": request.year_built,
     }

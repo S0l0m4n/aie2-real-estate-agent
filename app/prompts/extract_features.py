@@ -10,7 +10,7 @@ features from the user's prompt about a house they want to know the price for:
     * does the house have central air conditioning?
     * does the house have a garage?
     * lot area
-    * MS subclass
+    * house type
     * neighborhood
     * overall quality (1-10)
     * total number of rooms

@@ -11,4 +11,4 @@ ML_MODEL = MODEL_DIR + "/" + os.getenv("ML_MODEL", "")
 
 # --- Groq settings ---
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")

@@ -3,8 +3,8 @@ Thin Groq client.
 """
 
 from functools import lru_cache
-
 from groq import Groq
+from pydantic import BaseModel
 
 from app.config import GROQ_API_KEY, GROQ_MODEL
 
@@ -18,7 +18,9 @@ def _get_groq_client():
     return Groq(api_key=GROQ_API_KEY)
 
 
-def call(user_prompt: str, system_prompt: str) -> str:
+def call(user_prompt: str,
+         system_prompt: str,
+         response_model: type[BaseModel]) -> BaseModel:
     """Call LLM with user prompt and system prompt."""
     client = _get_groq_client()
 
@@ -29,6 +31,13 @@ def call(user_prompt: str, system_prompt: str) -> str:
         ],
         model=GROQ_MODEL,
         temperature=TEMPERATURE,
+        response_format={
+            "type": "json_schema",
+            "json_schema": {
+                "name": response_model.__name__,
+                "schema": response_model.model_json_schema(),
+            },
+        },
     )
 
     return response.choices[0].message.content

@@ -3,7 +3,7 @@
 # =============================================================================
 
 EXTRACT_FEATURES_PROMPT = """
-## Brief\n\n
+## Brief
 You are a real estate agent that needs to extract the following features from
 the user's prompt about a house they want to know the price for:
     * number of bedrooms
@@ -16,7 +16,7 @@ the user's prompt about a house they want to know the price for:
     * total number of rooms
     * year the house was built
 
-## MS subclass values\n\n
+## MS subclass values
 If the house is 1-story, then:
     * built >= 1946     = 20
     * built <  1946     = 30
@@ -31,7 +31,7 @@ Other valid categories:
     * duplex            = 90
 If you can't match the type, then set 190.
 
-## Neighborhood values\n\n
+## Neighborhood values
 Represent each neighborhood with its respective code:
     BLOOMINGTON_HEIGHTS = "Blmngtn"
     BLUESTEM = "Blueste"
@@ -47,7 +47,7 @@ Represent each neighborhood with its respective code:
     LANDMARK = "Landmrk"
     MEADOW_VILLAGE = "MeadowV"
     MITCHELL = "Mitchel"
-    NORTH_AMES = "Names"
+    NORTH_AMES = "NAmes"
     NORTHRIDGE = "NoRidge"
     NORTHPARK_VILLA = "NPkVill"
     NORTHRIDGE_HEIGHTS = "NridgHt"
@@ -61,19 +61,8 @@ Represent each neighborhood with its respective code:
     TIMBERLAND = "Timber"
     VEENKER = "Veenker"
 
-## Output format\n\n
-The output should return all extracted features, plus a list of the missing
-(unextracted) features. A completeness signal represents the proportion of
-extracted features (0 = none, 1.0 = all).
-
-Use a JSON object with these exact keys:
-    * lot_area
-    * ms_sub_class
-    * neighborhood
-    * overall_qual
-    * total_rooms
-    * year_built
-    * missing_features
-    * completeness.
-Use None for any feature you could not extract.
+Use 'None' for any feature you could not extract. Use the `missing_features`
+list for fields not found, set `completeness` to the proportion of the 9 feature
+fields extracted (0.0–1.0), and use `message` to communicate anything relevant
+to the user (as prose).
 """

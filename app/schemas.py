@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 # --- ML model ---
 
+
 class MSSubClass(int, Enum):
     ONE_STORY_NEW = 20
     ONE_STORY_OLD = 30
@@ -42,7 +43,7 @@ class Neighborhood(str, Enum):
     LANDMARK = "Landmrk"
     MEADOW_VILLAGE = "MeadowV"
     MITCHELL = "Mitchel"
-    NORTH_AMES = "Names"
+    NORTH_AMES = "NAmes"
     NORTHRIDGE = "NoRidge"
     NORTHPARK_VILLA = "NPkVill"
     NORTHRIDGE_HEIGHTS = "NridgHt"
@@ -75,10 +76,14 @@ class PredictedPrice(BaseModel):
 
 # --- Stage 1: LLM feature extraction ---
 
+
 class HouseDescription(BaseModel):
     """Request body for the /extract endpoint."""
 
-    info: str = Field(..., description="Free-text description of the property", min_length=1)
+    text: str = Field(
+        description="Free-text description of the property",
+        examples=["A 3-bedroom house in North Ames with central AC and in good condition."],
+    )
 
 
 class ExtractedFeatures(BaseModel):
@@ -98,4 +103,5 @@ class ExtractedFeatures(BaseModel):
     year_built: Optional[int] = None
 
     missing_features: list[str] = []
-    completeness: float = 0.0
+    completeness: int = Field(ge=0, le=100)
+    message: Optional[str] = None

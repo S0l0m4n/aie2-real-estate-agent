@@ -3,6 +3,8 @@ This is the FastAPI server application that presents the /predict route for
 predicting the house price given the input data.
 """
 
+import json
+
 from fastapi import Body, FastAPI, HTTPException
 from typing import Annotated
 
@@ -100,4 +102,6 @@ def predict(request: Annotated[HouseFeatures, Body(openapi_examples=EXAMPLES)]):
 @app.post("/extract", response_model=ExtractedFeatures)
 def extract_features(request: HouseDescription):
     """Extract house features from a natural language property description."""
-    llm_client.call(request.info, EXTRACT_FEATURES_PROMPT)
+    response = llm_client.call(request.text, EXTRACT_FEATURES_PROMPT,
+                               ExtractedFeatures)
+    return ExtractedFeatures.model_validate_json(response)

@@ -12,7 +12,8 @@ from app import llm_client
 from app import ml_model as model
 from app.prompts import EXTRACT_FEATURES_PROMPT
 from app.schemas import (
-    ExtractedFeatures, HouseDescription, HouseFeatures, PredictedPrice
+    ExtractedFeatures, HouseDescription, HouseFeatures, PredictedPrice,
+    HouseData, PriceAnalysis
 )
 
 app = FastAPI(title="AI Real Estate Agent API")
@@ -110,7 +111,7 @@ def extract_features(request: HouseDescription):
 # --- Stage 2 LLM: Price analysis ---
 
 # POST: Analyse predicted price based on summary stats
-@app.post*"/analyse", response_model=PriceAnalysis)
+@app.post("/analyse", response_model=PriceAnalysis)
 def analyse_price(request: HouseData):
     """Analyse the predicted price for the specified house, using the summary
     stats generated from the model's training data."""

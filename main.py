@@ -7,6 +7,7 @@ from fastapi import Body, FastAPI, HTTPException
 from typing import Annotated
 
 from app import ml_model as model
+from app.prompts import EXTRACT_FEATURES_PROMPT
 from app.schemas import (
     ExtractedFeatures, HouseDescription, HouseFeatures, PredictedPrice
 )

@@ -7,7 +7,10 @@ from fastapi import Body, FastAPI, HTTPException
 from typing import Annotated
 
 from app import ml_model as model
-from app.schemas import HouseFeatures, PredictedPrice
+from app.schemas import (
+    ExtractedFeatures, HouseDescription, HouseFeatures, PredictedPrice
+)
+from app.services.groq_llm import call_llm
 
 app = FastAPI(title="AI Real Estate Agent API")
 
@@ -29,6 +32,8 @@ def health():
     """
     return {"status": "ok"}
 
+
+# --- ML model prediction ---
 
 EXAMPLES = {
     "new_2_story": {
@@ -64,7 +69,7 @@ EXAMPLES = {
 
 # POST: Predict house price
 @app.post("/predict", response_model=PredictedPrice)
-def predict(input_features: Annotated[HouseFeatures, Body(openapi_examples=EXAMPLES)]):
+def predict(request: Annotated[HouseFeatures, Body(openapi_examples=EXAMPLES)]):
     """
     Predict the house price based on the input features.
     """
@@ -73,16 +78,25 @@ def predict(input_features: Annotated[HouseFeatures, Body(openapi_examples=EXAMP
 
     # Map API field names to the column names the model was trained on
     features = {
-        "BedroomAbvGr": input_features.bedrooms,
-        "CentralAir": int(input_features.central_air),
-        "HasGarage": int(input_features.has_garage),
-        "LotArea": input_features.lot_area,
-        "MSSubClass": input_features.ms_sub_class.value,
-        "Neighborhood": input_features.neighborhood.value,
-        "OverallQual": input_features.overall_qual,
-        "TotRmsAbvGrd": input_features.total_rooms,
-        "YearBuilt": input_features.year_built,
+        "BedroomAbvGr": request.bedrooms,
+        "CentralAir": int(request.central_air),
+        "HasGarage": int(request.has_garage),
+        "LotArea": request.lot_area,
+        "MSSubClass": request.ms_sub_class.value,
+        "Neighborhood": request.neighborhood.value,
+        "OverallQual": request.overall_qual,
+        "TotRmsAbvGrd": request.total_rooms,
+        "YearBuilt": request.year_built,
     }
 
     y = model.predict(features)
-    return PredictedPrice(predicted_price=round(y / 1000) * 1000)
+    return PredictedPrice(price=round(y / 1000) * 1000)
+
+
+# --- Stage 1 LLM: Feature extraction ---
+
+# POST: Extract house features from description
+@app.post("/extract", response_model=ExtractedFeatures)
+def extract_features(request: HouseDescription):
+    """Extract house features from a natural language property description."""
+    call_llm(request, EXTRACT_FEATURES_PROMPT)

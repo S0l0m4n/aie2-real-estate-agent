@@ -3,8 +3,11 @@ Pydantic data models
 """
 
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseModel, Field
+
+# --- ML model ---
 
 class MSSubClass(int, Enum):
     ONE_STORY_NEW = 20
@@ -67,6 +70,33 @@ class HouseFeatures(BaseModel):
 
 
 class PredictedPrice(BaseModel):
-    predicted_price: int
+    price: int
 
 
+# --- Stage 1: LLM feature extraction ---
+
+class HouseDescription(BaseModel):
+    """Request body for the /extract endpoint."""
+
+    info: str = Field(..., description="Free-text description of the property", min_length=1)
+
+
+class ExtractedFeatures(BaseModel):
+    """
+    Stage 1 output — feature values parsed from house description, plus
+    completeness metadata.
+    """
+
+    bedrooms: Optional[int] = None
+    central_air: Optional[bool] = None
+    has_garage: Optional[bool] = None
+    lot_area: Optional[int] = None
+    ms_sub_class: Optional[int] = None
+    neighborhood: Optional[str] = None
+    overall_qual: Optional[int] = None
+    total_rooms: Optional[int] = None
+    year_built: Optional[int] = None
+
+    extracted_features: list[str] = []
+    missing_features: list[str] = []
+    completeness: float = 0.0

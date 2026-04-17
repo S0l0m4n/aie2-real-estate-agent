@@ -11,4 +11,6 @@ When I ask you a question in VS Code, I want you to directly answer it, not just
 
 Try to keep Git diffs minimal between commits. Only change something that is working when you need to change it to support the new feature, or if the current way of doing it is dragging us down or a much better solution is available.
 
+Never end a code file, e.g. `*.py`, with an empty line.
+
 The first part of this project is to create a FastAPI that exposes a machine-learning model for real estate data. This will be a joblib file in the data/ directory.
